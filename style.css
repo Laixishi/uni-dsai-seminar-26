@@ -449,7 +449,7 @@ section { padding: var(--section-pad) 0; }
 
 .speakers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
@@ -461,6 +461,9 @@ section { padding: var(--section-pad) 0; }
   text-align: center;
   box-shadow: 0 2px 12px var(--shadow);
   transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .speaker-card:hover {
@@ -499,6 +502,17 @@ section { padding: var(--section-pad) 0; }
   margin-bottom: 4px;
 }
 
+.speaker-name a {
+  color: var(--brown-dark);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.speaker-name a:hover {
+  color: var(--terracotta);
+  border-bottom-color: var(--terracotta-soft);
+}
+
 .speaker-affil {
   font-size: 0.8rem;
   color: var(--brown-light);
@@ -527,6 +541,7 @@ section { padding: var(--section-pad) 0; }
   border: 1px solid var(--gold);
   padding: 3px 12px;
   border-radius: var(--radius-xl);
+  margin-top: auto;
 }
 
 /* ─── Organizers ─────────────────────────────────────────── */
@@ -723,7 +738,7 @@ section { padding: var(--section-pad) 0; }
 
   .schedule-grid { grid-template-columns: 1fr 1fr; }
 
-  .speakers-grid { grid-template-columns: 1fr 1fr; }
+  .speakers-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 }
 
 @media (max-width: 480px) {
