@@ -179,6 +179,19 @@
           <div class="talk-time">&#128336; 2:00 – 3:30 PM ET</div>
         </div>
 
+        <!-- Session 6 -->
+        <div class="talk-card">
+          <div class="talk-dot"></div>
+          <div class="talk-date-badge">
+            <span class="talk-date-day">30</span>
+            <span class="talk-date-month">June</span>
+          </div>
+          <div class="talk-label">Session 6</div>
+          <div class="talk-speaker">Alec Koppel</div>
+          <div class="talk-title">Johns Hopkins University APL</div>
+          <div class="talk-time">&#128336; 10:00 – 11:00 AM ET</div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -244,6 +257,17 @@
           <div class="speaker-date">June 16, 2026</div>
         </div>
 
+        <!-- Alec Koppel -->
+        <div class="speaker-card">
+          <div class="speaker-avatar">
+            <img src="https://koppel.netlify.app/assets/images/profile2.png" alt="Alec Koppel" />
+          </div>
+          <div class="speaker-name"><a href="https://koppel.netlify.app" target="_blank" rel="noopener">Alec Koppel</a></div>
+          <div class="speaker-affil">Senior Scientist · Johns Hopkins University APL</div>
+          <div class="speaker-date">June 30, 2026</div>
+          <button class="btn-talk" onclick="openTalkModal('koppel')">&#128196; View Talk</button>
+        </div>
+
       </div>
     </div>
   </section>
@@ -299,6 +323,42 @@
 
 
   <!-- ══════════════════════════════════════════════════════
+       TALK MODALS
+  ══════════════════════════════════════════════════════ -->
+
+  <!-- Alec Koppel Talk Modal -->
+  <div class="modal-overlay" id="modal-koppel" role="dialog" aria-modal="true" aria-labelledby="modal-koppel-title">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeTalkModal('koppel')" aria-label="Close">&times;</button>
+
+      <div class="modal-speaker-info">
+        <div class="modal-speaker-avatar">AK</div>
+        <div>
+          <div class="modal-speaker-name">Alec Koppel</div>
+          <div class="modal-speaker-affil">Senior Scientist &bull; JHU Applied Physics Laboratory</div>
+        </div>
+      </div>
+
+      <div class="modal-talk-date">June 30, 2026 &bull; 10:00 – 11:00 AM ET</div>
+
+      <h3 class="modal-talk-title" id="modal-koppel-title">
+        Model-Based Reinforcement Learning: On Attempts to Bridge Bayesian Regret with the Emerging area of &ldquo;World Models&rdquo;
+      </h3>
+
+      <div class="modal-section-label">Abstract</div>
+      <p class="modal-text">
+        Reinforcement Learning (RL) is a form of stochastic adaptive control in which one seeks to estimate parameters of a controller only from data, and has gained popularity in recent years. However, technological applications of RL are often hindered by astronomical sample complexity demanded by their training. Model-based reinforcement learning is known to provide a practically sample efficient approach; however, its performance certificates in terms of Bayesian regret often require restrictive Gaussian assumptions, which may fail to distinguish between vastly different performance in sparse or dense reward settings. Motivated by these gaps, we provide a unifying perspective on ways to make MBRL, namely, Posterior Sampling combined with Model-Predictive Control (MPC), computationally efficient for different parameterizations that go beyond linear Gaussian settings: mixture families, convex two-layer neural networks, and patchwise training of deeper architectures. Doing so provides a conceptual template for bridging the theoretical performance understanding of Bayesian regret with emerging efforts to build world models based upon Dreamer and other emerging generative simulation engines. In particular, we discuss theoretical and experimental tradeoffs of MBRL in the context of these different parameterization specifications, and persistent gaps between these settings and emerging Dreamer/JEPA approaches.
+      </p>
+
+      <div class="modal-section-label">Bio</div>
+      <p class="modal-text">
+        Alec Koppel is a Senior Scientist at the Johns Hopkins University Applied Physics Labs within Research and Exploratory Development Department (REDD). Previously, he was a Research Lead within Artificial Intelligence Research at JPMorganChase. He was also a Research Scientist at Amazon as part of Optimal Sourcing Systems (OSS) within Supply Chain Optimization Technologies (SCOT) and as a Research Scientist at the U.S. Army Research Laboratory in the Computational and Information Sciences Directorate (2017&ndash;2021). He received his MS/PhD degrees, respectively, in Statistics/Electrical and Systems Engineering at the University of Pennsylvania. His undergraduate/MS education, respectively, in Mathematics/Systems Science, is from Washington University in St. Louis. Alec&rsquo;s research focuses on optimization and machine learning, spanning applications in autonomous systems/robotics, financial networks, and supply chain optimizations, with particular interests in Reinforcement Learning, Bandits, sequential Bayesian, Online Learning and Stochastic Optimization.
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════
        FOOTER
   ══════════════════════════════════════════════════════ -->
   <footer class="footer">
@@ -344,6 +404,38 @@
         links.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       });
+    });
+
+    // Talk modals
+    function openTalkModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (modal) {
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeTalkModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (modal) {
+        modal.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    }
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', e => {
+        if (e.target === overlay) {
+          overlay.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal-overlay.open').forEach(m => {
+          m.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      }
     });
   </script>
 
